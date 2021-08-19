@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monticello | International group</title>
+
+    <link href="path/to/lightbox.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="image/icone-monticello.png" type="image/png">
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.sticky.js"></script>
+    <script>
+        $(window).load(function () {
+            $("#menu").sticky({
+                topSpacing: 0
+            });
+        });
+    </script> -->
+</head>
+
+<body class="page">
+    <a id="top"></a>
+    <header class="header">
+        //= _menu.html
+
+        //= _title-block.html
+    </header>
+
+    <main class="main">
+        //= _about-us.html
+
+        //= _news.html
+
+        //= _gallery.html
+
+        //= _contact.html
+    </main>
+    <footer class="footer">
+        //= _footer.html
+    </footer>
+    <a class="link-to-top" id="showScroll"></a>
+    <script src="js/script.js"></script>
+    <!-- Google map -->
+    <script>
+        function initMap() {
+            const cordsMarker = {
+                lat: 40.67993172378348,
+                lng: -73.89965606494924,
+            };
+            const cords = {
+                lat: 40.66712130277596,
+                lng: -73.87594442663956
+            };
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: cords,
+                zoom: 13.1,
+                mapId: '2087a0a5c6592ba4',
+            });
+            const marker = new google.maps.Marker({
+                position: cordsMarker,
+                map: map,
+                icon: 'image/Pin.png'
+            });
+            const contentString = '<div id="content">';
+            const infowindow = new google.maps.InfoWindow({
+                content: contentString,
+            });
+            marker.addListener("click", () => {
+                infowindow.open({
+                    anchor: marker,
+                    map,
+                    shouldFocus: false,
+                });
+            });
+        };
+    </script>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACLJtDT9ST1Zt0A7rKuWancGIsrIuJIwE&callback=initMap">
+    </script>
+    <!-- |||||||||||||||||||||||||||||||||||||||||||| -->
+</body>
+
+</html>

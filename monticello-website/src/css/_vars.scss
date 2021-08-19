@@ -1,0 +1,61 @@
+$alto: #ddd;
+$green: #008000;
+$chambray:#3b5998;
+$color-white: #ffffff;
+$color-black: #000000;
+$dodger-blue: #5474FD;
+$mercury: #E8E8E8;
+$dusty-gray:#999999;
+$mine-shaft: #232323;
+$dark-mine-shaft:#333333;
+$red-orange: #ff2727;
+$grey: #bababa;
+$orange: #ff6033;
+$brown: #a52a2a;
+$pickled-bluewood: #2C4058;
+$malibu: #55B7FF;
+$river-bed:#4b5562;
+$heliotrope: #7E5AFF;
+$iron:#d5d9de;
+
+$input-border-color: $grey;
+$default-border-radius: 5px;
+
+$facebook-color: $chambray;
+
+$news-gardient: linear-gradient(90deg, #3c7fd4 0%, #24ccfa 100%);
+$header-gardient: linear-gradient(45deg, #55B7FF 0%, #7c5bf9 100%);
+
+$default-border: 1px solid $input-border-color;
+
+$container-width: 1200px;
+$default-gap: 15px;
+$small-container-width: 800px;
+
+$body-bg-color: $green;
+$border-color: $alto;
+
+$font-folder-path: '../fonts/';
+$folder-image: '../image/';
+
+$font-default-name: 'Gotham';
+$font-secondary-name: 'Open Sans';
+
+$follback: Arial,
+Helvetica,
+sans-serif;
+
+$font-dafault: $font-default-name,
+$follback;
+$font-secondary: $font-secondary-name,
+$follback;
+
+$default-font-size: 18px;
+$default-color-text: $pickled-bluewood;
+
+
+$breack-points: ("xl": 1200px,
+    "lg": 992px,
+    "md": 768px,
+    "res": 614px,
+    "sm": 576px);

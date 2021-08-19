@@ -1,0 +1,118 @@
+.gallery {
+    padding: 140px 0;
+
+    @media screen and (max-width: 992px) {
+        padding: 100px 0;
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 70px 0;
+    }
+
+    @media screen and (max-width: 576px) {
+        padding: 40px 0;
+    }
+
+    &__row {}
+
+    &__title {}
+
+    &__link {
+        position: relative;
+        display: block;
+        &::after {
+            content: '';
+            @include position-center;
+            display: block;
+            width: 80px;
+            height: 80px;
+            @include bg-cover('#{$folder-image}gallery_360.png');
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        &:hover {
+            &::after{
+                opacity: 1;
+            }
+        }
+    }
+
+    &__photo {
+        display: block;
+        height: 100%;
+        width: 100%;
+
+        &_up {
+            padding-bottom: 10px;
+        }
+
+        &_left {
+            padding-right: 10px;
+        }
+    }
+
+    &__photo {
+        transition: opacity 0.35s, transform 0.35s;
+        // transform: translate3d(-40px, 0, 0);
+    }
+
+    &__none-photo {
+        width: 285px;
+        display: block;
+    }
+
+    &__button {
+        margin: 0 auto;
+        margin-top: 60px;
+        display: block;
+    }
+
+    @media screen and (max-width: 1200px) {
+        &__row {
+            justify-content: center;
+        }
+
+        &__title {
+            margin-bottom: 30px;
+        }
+    }
+
+    @media screen and (max-width: 580px) {
+        &__photo {
+            height: 250px;
+            padding: 5px 0px;
+        }
+
+        &__button {
+            margin-top: 20px;
+        }
+
+        &__title {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.display-none {
+    display: none;
+}
+
+.active-flex {
+    display: flex;
+}
+
+.lb-cancel {
+    background: url(../image/loading.gif) no-repeat;
+}
+
+.lb-nav a.lb-prev {
+    background: url(../image/prev.png) left 48% no-repeat;
+}
+
+.lb-nav a.lb-next {
+    background: url(../image/next.png) right 48% no-repeat;
+}
+
+.lb-data .lb-close {
+    background: url(../image/close.png) top right no-repeat;
+}
