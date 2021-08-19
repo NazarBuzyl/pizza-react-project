@@ -1,0 +1,36 @@
+.footer {
+    @include bg-cover("#{$folder-image}bg_footer.png");
+    background-image: url("#{$folder-image}bg_footer.png"),
+    $header-gardient;
+    padding: 200px 0;
+
+    @media screen and (max-width: 992px) {
+        padding: 100px 0;
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 70px 0;
+    }
+
+    @media screen and (max-width: 576px) {
+        padding: 50px 0;
+    }
+
+    @media screen and (max-width: 800px) {
+        font-size: 16px;
+    }
+
+    &__signature {
+        color: #fff;
+    }
+
+    &__signature-span {
+        padding: 0 20px;
+    }
+
+    @media screen and (max-width: 400px) {
+        .footer__social-media-row {
+            padding: 15px 0;
+        }
+    }
+}

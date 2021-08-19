@@ -1,0 +1,47 @@
+.title-h1 {
+    font-size: 80px;
+    color: $color-white;
+    text-transform: uppercase;
+    letter-spacing: 11px;
+
+    @media screen and (max-width: 870px) {
+        font-size: 70px;
+    }
+
+    @media screen and (max-width: 870px) {
+        font-size: 55px;
+    }
+}
+
+.title-h2 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 44px;
+    position: relative;
+    font-family: $font-default-name;
+    font-weight: 700;
+    margin-bottom: 70px;
+
+    &::before {
+        content: '';
+        height: 1px;
+        width: 100px;
+        position: absolute;
+        background-color: $pickled-bluewood;
+        @include position-center;
+        top: -20px;
+    }
+
+    @media screen and (max-width: 768px) {
+        font-size: 36px;
+    }
+}
+
+.title-h3 {
+    font-size: 22px;
+    font-family: $font-default-name;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.title-h4 {}

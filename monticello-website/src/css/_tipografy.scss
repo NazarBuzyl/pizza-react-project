@@ -1,0 +1,78 @@
+@include grid();
+
+.page {
+    font-family: $font-dafault;
+    font-size: $default-font-size;
+    line-height: 1.4;
+    // @include bg-cover('../image/bg.jpg');
+    min-height: 100vh;
+    color: $default-color-text;
+}
+
+.container {
+    max-width: $container-width;
+    margin: 0 auto;
+    padding: $default-gap;
+}
+
+.small-container {
+    max-width: $small-container-width;
+    margin: 0 auto;
+    padding: $default-gap;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 (-$default-gap);
+}
+
+[class^="col-"] {
+    padding: $default-gap;
+}
+
+img {
+    max-width: 100%;
+}
+
+.black {
+    background-color: black;
+}
+
+.row_relative {
+    position: relative;
+}
+
+@media screen and (max-width: 768px) {
+    .col-display-none {
+        display: none;
+    }
+}
+
+.button {
+    border: none;
+    font-size: 14px;
+    color: $default-color-text;
+    min-width: 190px;
+    padding: 19px 0;
+    text-transform: uppercase;
+    cursor: pointer;
+    vertical-align: middle;
+    text-align: center;
+    font-family: $font-default-name;
+    font-weight: 400;
+    background-color: inherit;
+    border: 1px solid $default-color-text;
+
+    &:hover {
+        transition: all 0.5s ease-in-out;
+        background-color: $default-color-text;
+        color: #fff;
+    }
+
+    @media screen and (max-width: 900px) {
+        font-size: 12px;
+        padding: 14px 0;
+        min-width: 140px;
+    }
+}

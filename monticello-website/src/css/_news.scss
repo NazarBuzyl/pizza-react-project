@@ -1,0 +1,231 @@
+.news {
+    @include bg-cover("#{$folder-image}bg_news.png");
+    background-image: url("#{$folder-image}bg_news.png"),
+    $news-gardient;
+    overflow: hidden;
+
+    padding: 140px 0;
+
+    // &__container{
+    //     max-width: 1200px;
+    //     padding: 0 15px;
+    //     margin: 0 auto;
+    // }
+    @media screen and (max-width: 992px) {
+        padding: 100px 0;
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 70px 0;
+    }
+
+    @media screen and (max-width: 576px) {
+        padding: 40px 0;
+    }
+
+    &__container-card {
+        padding: 15px;
+
+        @media screen and (max-width: 1220px) {
+            padding: 15px 10px;
+        }
+
+        @media screen and (max-width: 1104px) {
+            padding: 15px;
+        }
+    }
+
+    &__title {
+        @media screen and (max-width: 768px) {
+            margin-bottom: 30px;
+        }
+    }
+
+    &__card {
+        background-color: #fff;
+    }
+
+    &__link {
+        position: relative;
+        display: block;
+
+        &::after {
+            content: '';
+            @include position-center;
+            display: block;
+            width: 80px;
+            height: 80px;
+            @include bg-cover('#{$folder-image}news_hover.png');
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        &:hover {
+            &::after {
+                opacity: 1;
+            }
+        }
+    }
+
+    &__photo {
+        display: block;
+    }
+
+    &__info-block {
+        padding: 30px 20px;
+    }
+
+    &__strong {
+        text-transform: uppercase;
+        font-size: 22px;
+        font-family: $font-dafault;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    &__info {
+        color: $river-bed;
+        font-family: $font-secondary;
+        margin-bottom: 40px;
+    }
+
+    &__main-photo {
+        display: block;
+        margin-left: 15px;
+    }
+
+    &__main-info {
+        padding: 14px 20px;
+        margin-top: -8px;
+    }
+
+    &__name {
+        text-transform: uppercase;
+    }
+
+    &__date {
+        color: $malibu;
+        font-size: 14px;
+    }
+}
+
+// slider
+
+.slick-dots li button::before {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0);
+    border: #fafdfe solid 1px;
+    content: '';
+}
+
+.slick-dots li.slick-active button::before {
+    background-color: rgb(255, 255, 255);
+}
+
+.slick-next::before,
+.slick-prev::before {
+    position: absolute;
+    top: 0;
+    font-family: 'slick';
+    font-size: 15px;
+    display: block;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: rgba(255, 255, 255, 0.5) solid 1px;
+    line-height: 34px;
+    opacity: .75;
+    color: #ffffff;
+}
+
+.slick-next {
+    z-index: 15;
+}
+
+.slick-prev {
+    z-index: 16
+}
+
+.slick-next:hover::before,
+.slick-prev:hover::before {
+    background-color: #ffffff80;
+}
+
+.slick-next::before {
+    content: '›';
+    left: 40px;
+}
+
+.slick-prev::before {
+    content: '‹';
+    right: 40px;
+}
+
+@media screen and (max-width: 1340px) {
+    .slick-next::before {
+        left: 0;
+    }
+
+    .slick-prev::before {
+        right: 0;
+    }
+}
+
+@media screen and (max-width: 1260px) {
+    .slick-next::before {
+        left: -20px;
+    }
+
+    .slick-prev::before {
+        right: -20px;
+    }
+}
+
+@media screen and (max-width: 1220px) {
+    .slick-next::before {
+        left: -40px;
+        background-color: hsla(0, 0%, 50%, 0.5);
+    }
+
+    .slick-prev::before {
+        right: -40px;
+        background-color: hsla(0, 0%, 50%, 0.5);
+    }
+}
+
+@media screen and (max-width: 1104px) {
+    .slick-list {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .slick-next::before {
+        left: -50px;
+        background-color: #ffffff00;
+    }
+
+    .slick-prev::before {
+        right: -50px;
+        background-color: #ffffff00;
+    }
+}
+
+@media screen and (max-width: 890px) {
+    .slick-next::before {
+        left: -40px;
+        background-color: hsla(0, 0%, 50%, 0.5);
+    }
+
+    .slick-prev::before {
+        right: -40px;
+        background-color: hsla(0, 0%, 50%, 0.5);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .slick-list {
+        max-width: 400px;
+    }
+}

@@ -1,0 +1,204 @@
+.header {
+    height: 100vh;
+    position: relative;
+    @include bg-cover("#{$folder-image}bg_hero-block.png");
+    background-image: url("#{$folder-image}bg_hero-block.png"),
+    $header-gardient;
+
+    &__info-block {
+        height: calc(100% - 120px);
+        position: relative;
+        text-align: center;
+        color: $color-white;
+        z-index: 10;
+        padding-top: 25vh;
+        font-family: $font-default-name;
+        font-weight: 700;
+        @media screen and (max-width: 768px) {
+            padding-top: 15vh;
+        }
+    }
+
+    &__title {
+        margin-bottom: 0;
+        @media screen and (max-width: 400px) {
+            letter-spacing: 1px;
+        }
+    }
+
+    &__motivation-quotation {
+        margin-top: 7px;
+        font-size: 18px;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 7px;
+
+        @media screen and (max-width: 870px) {
+            font-size: 14px;
+        }
+    }
+
+    &__scroll-block {
+        position: absolute;
+    }
+
+}
+
+#titleBlock {
+    position: relative;
+}
+
+.vertical-dots {
+    position: absolute;
+    top: 20%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 18px;
+    height: 100px;
+    @media screen and (max-width: 1104px) {
+        top: 30%;
+    }
+    & li.slick-active button:before {
+        position: absolute;
+        opacity: 0.75;
+        color: #fff;
+        content: "";
+        background-color: white;
+    }
+
+    & li {
+        position: relative;
+        width: 25px;
+        cursor: pointer;
+        padding-bottom: 29px;
+        display: block;
+    }
+
+    & li button {
+        font-size: 0;
+        line-height: 0;
+        display: block;
+        width: 20px;
+        height: 20px;
+        padding: 5px;
+        cursor: pointer;
+        color: transparent;
+        border: 0;
+        outline: none;
+        background: transparent;
+    }
+
+    & li button::before {
+        border: 1px solid white;
+        border-radius: 50%;
+        position: absolute;
+        right: 219%;
+        margin-right: -50px;
+        content: "";
+        width: 9px;
+        height: 9px;
+        color: #fff;
+        background-color: transparent;
+    }
+    @media screen and (max-width: 800px) {
+        left: 50%;
+        top: 100%;
+        transform: translateX(-50%);
+        &  li{
+            display: inline-block;
+        }
+    }
+}
+
+// .vertical-dots {
+//     position: absolute;
+//     display: block;
+//     top: 0;
+//     -webkit-transform: translateY(-50%);
+//     transform: translateY(-50%);
+//     right: 18px;
+//     height: 100px;
+// }
+
+.social-media {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.link-for-media {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    border: 1px solid $color-white;
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+
+    @media screen and (max-width: 916px) {
+        height: 34px;
+        width: 34px;
+    }
+}
+
+.logo-media {
+    position: absolute;
+    fill: $color-white;
+    @include position-center;
+}
+
+.scroll-block {
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-50%);
+    height: 40px;
+    width: 40px;
+    border: 1px solid $color-white;
+    border-radius: 50%;
+
+    ::after {
+        content: '';
+        position: absolute;
+        display: block;
+        left: 50%;
+        top: 30%;
+        transform: translateX(-50%) rotate(45deg);
+        width: 10px;
+        height: 10px;
+        border: 2px solid $color-white;
+        border-left: none;
+        border-top: none;
+        animation: scroll 1.5s ease infinite;
+    }
+}
+
+.header {
+    @media screen and (max-width: 768px) {
+        &__social-media {
+            display: none;
+        }
+    }
+
+    &__info-block {}
+
+    &__title {}
+
+    &__motivation-quotation {}
+
+    &__scroll-block {}
+}
+
+.fixed {
+    background: $header-gardient;
+
+    position: fixed;
+}
+
+// .menu__item {
+//     &.active {
+//         &::before {
+//             background-color: #fff;
+//         }
+//     }
+// }
