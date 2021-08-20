@@ -1,0 +1,68 @@
+.footer {
+    background-color: $mine-shaft;
+    text-align: center;
+    padding: 105px 0 35px;
+
+    @media screen and (max-width: 1100px) {
+        padding: 65px 0;
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 45px 0;
+    }
+
+    &__strong {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    &__text {
+        margin-bottom: 20px;
+    }
+
+    &__social-sites {
+        max-width: 140px;
+        margin: 0 auto;
+    }
+}
+
+.social-sites {
+    &__flex {
+        justify-content: space-between;
+    }
+
+    &__logo-facebook {
+        &:hover {
+            fill: $dodger-blue;
+        }
+    }
+
+    &__logo-twitter {
+        &:hover {
+            fill: $dodger-blue;
+        }
+    }
+
+    &__logo-linkedin {
+        &:hover {
+            fill: $dodger-blue;
+        }
+    }
+
+    &__logo-youtube {
+        &:hover {
+            fill: $red-orange;
+        }
+    }
+
+    &__logo-pinterest {
+        &:hover {
+            fill: $red-orange;
+        }
+    }
+}
+
+.icon-sites {
+    fill: $color-white;
+
+}

@@ -1,0 +1,51 @@
+@include grid();
+
+.page {
+    font-family: $font-dafault;
+    font-size: $default-font-size;
+    line-height: 1.4;
+    @include bg-cover('../image/bg.jpg');
+    min-height: 100vh;
+    color: $default-color-text;
+    border: 15px solid $color-white;
+    @media screen and (max-width: 768px){
+        border: none;
+    }
+
+}
+
+.container {
+    max-width: $container-width;
+    margin: 0 auto;
+    padding: $default-gap;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 (-$default-gap);
+}
+
+[class^="col-"] {
+    padding: $default-gap;
+}
+
+// :focus {
+//     box-shadow: 0 0 5px blue;
+// }
+
+img {
+    max-width: 100%;
+}
+
+.black {
+    background-color: black;
+}
+
+.row_relative {
+    position: relative;
+}
+
+.logo {
+    text-transform: uppercase;
+}

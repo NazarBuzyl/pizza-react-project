@@ -1,0 +1,153 @@
+.our-clients {
+    @include bg-cover('#{$folder-image}bg-tourist.jpg');
+    padding: 105px 0;
+
+    @media screen and (max-width: 1100px) {
+        padding: 85px 0;
+    }
+
+    
+
+    &__title {
+        margin-bottom: 100px;
+        text-align: center;
+    }
+
+    &__img {
+        display: block;
+    }
+
+    &__black-block {
+        background-color: $dark-mine-shaft;
+        height: 100%;
+        margin-left: - $default-gap * 2;
+    }
+
+    &__info-block {
+        margin-left: 10px;
+        padding: 50px 25px 0 50px;
+    }
+
+    &__name {
+        margin-bottom: 40px;
+        font-size: 20px;
+    }
+
+    &__quotation {
+        text-indent: 1.2em;
+        position: relative;
+        display: block;
+
+        &::before {
+            content: '';
+            display: inline-block;
+            height: 20px;
+            width: 24px;
+            position: absolute;
+            background-image: url(../image/icon_text.jpg);
+            top: 0;
+            transform: translateY(-25%);
+            left: -7px;
+        }
+    }
+
+    @media screen and (max-width: 1050px) {
+        &__info-block {
+            padding: 15px 25px 0 50px;
+        }
+
+        &__title {
+            margin-bottom: 50px;
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .our-clients {
+        &__info-block {
+            font-size: 15px;
+        }
+
+        &__name {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+@media screen and (max-width: 868px) {
+    .our-clients {
+        &__img {
+            display: none;
+        }
+
+        &__black-block {
+            margin-left: 0;
+        }
+
+        &__info-block {
+            margin-left: 0;
+            padding: 50px 25px 50px 50px;
+            margin-right: 300px;
+
+        }
+
+        &__quotation {
+
+
+            &::after {
+                content: '';
+                position: absolute;
+                @include bg-cover('#{$folder-image}img-tourist.jpg');
+                width: 65%;
+                height: 100%;
+                top: 0;
+                right: -30px;
+                transform: translateX(100%);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 830px) {
+    .our-clients {
+        &__quotation {
+
+            &::after {
+                width: 75%;
+            }
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    .our-clients{
+        padding: 45px 0;
+    &__title {
+        margin-bottom: 0px;
+    }
+    }
+}
+@media screen and (max-width: 730px) {
+    .our-clients {
+        &__quotation {
+
+            &::after {
+                width: 90%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 675px) {
+    .our-clients {
+        &__info-block {
+            margin-right: 0;
+        }
+
+        &__quotation {
+
+            &::after {
+                display: none;
+            }
+        }
+    }
+}

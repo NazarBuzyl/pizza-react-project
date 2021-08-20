@@ -1,0 +1,37 @@
+.title-h1 {
+    font-size: 22px;
+    font-family: $font-dafault;
+    font-weight: 400;
+}
+
+.title-h2 {
+    font-size: 36px;
+    font-family: $font-secondary;
+    font-weight: 400;
+}
+
+.title-h3 {
+    font-family: $font-dafault;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.title-h4 {}
+
+.title-h5 {}
+
+.title-h6 {}
+
+@media screen and (max-width: 576px) {
+    .title-h1 {
+        font-size: 20px;
+    }
+
+    .title-h2 {
+        font-size: 28px;
+    }
+
+    .title-h3 {
+        font-size: 18px;
+    }
+}
