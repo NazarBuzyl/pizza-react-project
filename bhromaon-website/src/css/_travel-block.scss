@@ -1,0 +1,75 @@
+.travel-block {
+    padding: 85px 0;
+
+    &_first {
+        @include bg-cover('#{$folder-image}bg-spain01.jpg');
+    }
+
+    &_second {
+        @include bg-cover('#{$folder-image}bg-spain02.jpg');
+    }
+
+    &__flex-right {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__info {
+        display: block;
+        margin-top: 129px;
+        max-width: 50%;
+        background-color: rgba(35, 35, 35, 0.902);
+        padding: 50px 30px;
+
+    }
+
+    &__text-country,
+    &__text-city,
+    &__text {
+        margin-bottom: 30px;
+    }
+
+    &__text-city {
+        font-size: 20px;
+    }
+
+    &__link {
+        margin: 20px 0;
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 45px 0;
+    }
+}
+
+@media screen and (max-width: 970px) {
+    .travel-block {
+        &__info {
+            margin-top: 0px;
+            max-width: 60%;
+        }
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .travel-block {
+        &__info {
+            margin-top: 0px;
+            max-width: 70%;
+        }
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .travel-block {
+        &__info {
+            max-width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .travel-block {
+        padding: 65px 0;
+    }
+}

@@ -1,0 +1,50 @@
+.button {
+    border: none;
+    font-size: $default-font-size;
+    color: $color-white;
+    background-color: $dodger-blue;
+    padding: 23px 37px;
+    text-transform: uppercase;
+    cursor: pointer;
+    vertical-align: middle;
+    font-family: $font-secondary;
+    font-weight: 400;
+    max-width: 225px;
+    max-height: 60px;
+    position: relative;
+    overflow: hidden;
+
+
+    // &::before {
+    //     content: '';
+    //     display: block;
+    //     height: 100%;
+    //     background-color: #496BFE;
+    //     position: absolute;
+    //     top: 0;
+    //     left: -22px;
+    //     transform: skew(37deg);
+    //     width: 45%;
+    //     transition: width .5s ease;
+    // }
+
+    &_link {
+        display: block;
+        text-align: center;
+        line-height: 16px;
+        background: linear-gradient(45deg, #496bfe 0%, #496bfe 43%, #5474fd 43%, #5474fd 80%);
+        background-position: 50%;
+        background-size: 300% 100%;
+        transition: background-position .5s ease-in-out;
+
+        @media screen and (max-width: 500px) {
+            padding: 15px 25px;
+        }
+
+        &:hover {
+            box-shadow: 0 0 10px #5473fd5c;
+            transition: 0.5s ease-in-out;
+            background-position: 0%;
+        }
+    }
+}

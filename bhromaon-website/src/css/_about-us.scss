@@ -1,0 +1,75 @@
+.about-us {
+    @include bg-cover('#{$folder-image}bg-aboutUs.jpg');
+    padding: 105px 0;
+
+    &__title {
+        margin-bottom: 65px;
+        margin-top: 85px;
+    }
+
+    &__text {
+        margin-bottom: 35px;
+    }
+
+    &__link {
+        margin-top: 45px;
+    }
+
+    &__photo-block {
+        display: flex;
+
+        &_right {
+            justify-content: flex-end;
+        }
+
+        &_left {
+            margin-left: 12%;
+            margin-bottom: 5px;
+        }
+    }
+
+    &__photo {
+        display: block;
+
+    }
+}
+
+@media screen and (max-width: 888px) {
+    .about-us {
+        &__title {
+            margin-top: 0px;
+        }
+        &__photo-block {
+
+            &_left {
+                margin-left: 0;
+            }
+
+            &_right {
+                justify-content: flex-start;
+            }
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    .about-us {
+        padding: 45px 0;
+        &__info-block{
+            max-width: 75%;
+        }
+        &__photo-block{
+            &_right{
+                justify-content: flex-end;
+            }
+        }
+
+    }
+}
+@media screen and (max-width: 576px) {
+    .about-us {
+        &__info-block{
+            max-width: 100%;
+        }
+    }
+}
+

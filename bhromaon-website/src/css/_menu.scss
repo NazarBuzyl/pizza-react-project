@@ -1,0 +1,198 @@
+$color-menu-item: $color-white;
+
+.header {
+
+    &__menu {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    &__menu-logo {
+        font-size: 24px;
+        vertical-align: middle;
+        font-weight: 700px;
+    }
+}
+
+.menu-open {
+    overflow: hidden;
+    position: fixed;
+}
+
+.menu {
+    display: flex;
+    justify-content: flex-end;
+
+    &__list {
+        display: flex;
+
+        @media screen and (max-width: 768px) {
+            position: absolute;
+            display: block;
+            left: 0;
+            right: 0;
+            bottom: calc(100%);
+            height: calc(100vh - 100px);
+            background-color: $dodger-blue;
+            transform: translateX(-110%);
+            pointer-events: none;
+            transition: transform .5s ease-in-out;
+            padding-bottom: 80px;
+            overflow-y: auto;
+        }
+    }
+
+    &__item {
+        position: relative;
+        z-index: 1;
+
+        &:hover {
+            .menu__link::after {
+                visibility: visible;
+                opacity: 0.75;
+            }
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 14px;
+        color: $color-menu-item;
+        display: inline-block;
+        padding: 5px 20px;
+        position: relative;
+
+        @media screen and (max-width: 885px) {
+            font-size: 12.9px;
+        }
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 75%;
+            left: 50%;
+            top: 75%;
+            border-radius: 25%;
+            transform: translateX(-50%);
+            height: 2px;
+            background-color: $chambray;
+            visibility: hidden;
+            opacity: 0;
+            z-index: 5;
+            transition: opacity .5s ease-in-out;
+        }
+
+        &::before {
+            top: 0;
+        }
+
+        &::after {
+            bottom: 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            display: block;
+            padding: 20px;
+            position: relative;
+
+            &::after {
+                content: none;
+            }
+
+            &::before {
+                width: 3px;
+                height: auto;
+                top: 0px;
+                bottom: 0;
+                left: 0;
+            }
+        }
+    }
+
+    &__input {
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        clip: rect(0 0 0 0);
+    }
+
+    &__input {
+        @media screen and (max-width: 768px) {
+            &:checked {
+                &+.menu__burger-btn .burger-btn__line {
+                    background-color: transparent;
+
+                    &::after,
+                    &::before {
+                        top: 0;
+                        bottom: 0;
+                    }
+
+                    &::after {
+                        transform: rotate(45deg);
+                    }
+
+                    &::before {
+                        transform: rotate(-45deg);
+                    }
+                }
+
+                &~.menu__list {
+                    display: block;
+                    visibility: visible;
+                    pointer-events: all;
+                    transform: translateX(0);
+                }
+            }
+        }
+    }
+}
+
+
+.burger-btn {
+    border: $mercury;
+    border-radius: 3px;
+    width: 40px;
+    height: 40px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width: 768px) {
+        display: flex;
+    }
+
+    &__line {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: $mercury;
+        position: relative;
+        transition: background-color .5s ease-in-out;
+
+        &::before,
+        &::after {
+            content: '';
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: $mercury;
+            position: absolute;
+            transition: all .5s ease-in-out;
+        }
+
+        &::before {
+            top: -8px;
+        }
+
+        &::after {
+            bottom: -8px;
+        }
+    }
+}

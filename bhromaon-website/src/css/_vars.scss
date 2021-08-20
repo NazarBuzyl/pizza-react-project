@@ -1,0 +1,47 @@
+$alto: #ddd;
+$green: #008000;
+$chambray:#3b5998;
+$color-white: #ffffff;
+$color-black: #000000;
+$dodger-blue: #5474FD;
+$mercury: #E8E8E8;
+$dusty-gray:#999999;
+$mine-shaft: #232323;
+$dark-mine-shaft:#333333;
+$red-orange: #ff2727;
+
+$input-border-color: $color-white;
+$default-border-radius: 5px;
+
+$default-border: 1px solid $input-border-color;
+
+$container-width: 1140px;
+$default-gap: 15px;
+
+$body-bg-color: $color-white;
+$border-color: $color-white;
+
+$font-folder-path: '../fonts/';
+$folder-image: '../image/';
+
+$font-default-name: 'Josefin Sans';
+$font-secondary-name: 'Aleo';
+
+$follback: Arial,
+Helvetica,
+sans-serif;
+
+$font-dafault: $font-default-name,
+$follback;
+$font-secondary: $font-secondary-name,
+$follback;
+
+$default-font-size: 16px;
+$default-color-text: $mercury;
+
+
+$breack-points: ("xl": 1200px,
+    "lg": 992px,
+    'client': 868px,
+    "md": 768px,
+    "sm": 576px);
