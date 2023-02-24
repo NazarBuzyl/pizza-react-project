@@ -1,0 +1,32 @@
+@mixin grid($count: 12) {
+    @for $i from 1 through $count {
+        $width: calc(100% / 12 * $i);
+
+        .col-#{$i} {
+            max-width: $width;
+            width: 100%;
+            flex-basis: $width;
+        }
+    }
+
+    @each $breack-point,
+    $breack-point-value in $breack-points {
+        @media screen and (max-width: $breack-point-value) {
+            @for $i from 1 through $count {
+                $width: calc(100% / 12 * $i);
+
+                .col-#{$breack-point}-#{$i} {
+                    max-width: $width;
+                    width: 100%;
+                    flex-basis: $width;
+                }
+            }
+        }
+    }
+}
+
+@mixin media($point) {
+    @media screen and (max-width: map-get($breack-points, $point)) {
+        @content;
+    }
+}

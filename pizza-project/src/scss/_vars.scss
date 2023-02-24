@@ -1,0 +1,40 @@
+$white: #ffffff;
+$black: #232323;
+$gray-line: #f6f6f6;
+$orange: #fe5f1e;
+$emperor: #2c2c2c;
+$flamingo: #eb5a1e;
+$salomia: #ffdf8c;
+
+$duration: 0.15s;
+
+$body-bg-color: $salomia;
+
+$border-color: $flamingo;
+$default-border-radius: 30px;
+
+$default-border: 1px solid $border-color;
+
+$container-width: 1140px;
+$default-gap: 15px;
+
+
+$font-default-name: "Nunito";
+$font-secondary-name: "Roboto";
+
+$follback: Roboto, system-ui, Tahoma, sans-serif;
+
+$font-dafault: $font-default-name, $follback;
+$font-secondary: $font-secondary-name, $follback;
+
+$default-font-size: 16px;
+$default-color-text: $emperor;
+
+$default-secondary-font-size: 14px;
+
+$breack-points: (
+  "xl": 1200px,
+  "lg": 992px,
+  "md": 768px,
+  "sm": 576px,
+);

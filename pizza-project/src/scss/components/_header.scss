@@ -1,0 +1,32 @@
+@import '../vars';
+
+.header {
+  border-bottom: 1px solid $gray-line;
+  padding: 40px 0;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    display: flex;
+  }
+  
+  &__logo-img {
+    margin-right: 15px;
+  }
+
+  &__logo-title {
+    color: #181818;
+    font-size: 24px;
+    letter-spacing: 1%;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+
+  &__logo-description {
+    color: #7b7b7b;
+  }
+}
