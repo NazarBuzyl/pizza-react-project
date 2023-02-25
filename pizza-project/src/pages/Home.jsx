@@ -16,6 +16,7 @@ export default function Home() {
         setIsloading(false);
       })
       .catch((err) => console.warn(err));
+    window.scrollTo(0, 0);
   }, []);
 
   return (

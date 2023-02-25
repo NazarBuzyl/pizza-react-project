@@ -1,20 +1,17 @@
 .categories {
-  width: calc(100% - 210px);
-  overflow-x: scroll;
   margin-right: 10px;
-  padding: 3px 0;
-
+  
   &__list {
     display: flex;
+    flex-wrap: wrap;
   }
-  @media screen and (max-width: 820px){
+  @media screen and (max-width: 820px) {
     overflow-x: auto;
     width: 100%;
 
-  &__list {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+    &__list {
+      justify-content: center;
+    }
   }
 
   &__list-item {
