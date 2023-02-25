@@ -28,5 +28,8 @@
 
   &__logo-description {
     color: #7b7b7b;
+    @media screen and (max-width: 560px) {
+      display: none;
+    }
   }
 }

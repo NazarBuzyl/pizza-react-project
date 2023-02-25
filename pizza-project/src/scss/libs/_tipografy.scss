@@ -9,7 +9,6 @@ body {
   font-family: $font-dafault;
   font-size: $default-font-size;
   line-height: 1.4;
-  min-height: 100vh;
   color: $default-color-text;
 }
 
@@ -17,15 +16,16 @@ body {
   width: calc(100vw - 100px);
   height: 100%;
   background-color: #fff;
-  margin: 50px auto;
+  margin: 20px auto;
   border-radius: 10px;
   max-width: 1400px;
+  min-height: calc(100vh - 40px);
 }
 
 .container {
   max-width: $container-width;
   margin: 0 auto;
-  padding: $default-gap;
+  padding: 0 30px;
 
   &--cart {
     max-width: 820px;
