@@ -1,13 +1,14 @@
 .categories {
   &__list {
     display: flex;
+    flex-wrap: wrap;
   }
 
   &__list-item {
     background-color: #f9f9f9;
     padding: 13px 30px;
     border-radius: 30px;
-    margin-right: 10px;
+    margin: 5px 10px 5px 0px;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.1s ease-in-out;

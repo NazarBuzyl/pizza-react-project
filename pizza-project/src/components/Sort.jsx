@@ -1,21 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import arrowTop from "../assets/img/arrow-top.svg";
 
 export default function Sort() {
+  const [activeIndexSort, setActiveIndexSort] = useState(1);
+  const [open, setOpen] = useState(false);
+
+  const sortList = [
+    "popularity",
+    "price: high to low",
+    "price: low to high",
+    "alphabetical: A-Z",
+    "alphabetical: Z-A",
+  ];
+
+  const onClickSortItem = (index) => {
+    setActiveIndexSort(index);
+    setOpen(!open);
+  };
+
   return (
     <div className="sort">
-      <div className="sort__label">
+      <div onClick={() => setOpen(!open)} className="sort__label">
         <img className="sort__label-svg" src={arrowTop} alt="arrow-top" />
         <b className="sort__label-b">Sort by:</b>
-        <span className="sort__label-span">popularity</span>
+        <span className="sort__label-span"> {sortList[activeIndexSort]}</span>
       </div>
-      <div class="sort__popup">
+      <div className={`sort__popup ${open ? "active" : ""}`}>
         <ul className="sort__popup-list">
-          <li className="sort__popup-item active">popularity</li>
-          <li className="sort__popup-item">price: high to low</li>
-          <li className="sort__popup-item">price: low to high</li>
-          <li className="sort__popup-item">alphabetical: A-Z</li>
-          <li className="sort__popup-item">alphabetical: Z-A</li>
+          {sortList.map((item, index) => (
+            <li
+              key={index}
+              className={`sort__popup-item ${
+                activeIndexSort === index ? "active" : ""
+              }`}
+              onClick={() => onClickSortItem(index)}
+            >
+              {item}
+            </li>
+          ))}
         </ul>
       </div>
     </div>

@@ -22,9 +22,9 @@ export default function Header() {
           </div>
         </div>
         <div className="header__cart">
-          <a href="/" class="button button--cart">
+          <a href="/" className="button button--cart">
             <span className="button--cart__span">520 $</span>
-            <div class="button--delimiter"></div>
+            <div className="button--delimiter"></div>
             <img className="button--cart__logo" src={cartSvg} alt="Cart" />
             <span className="button--cart__span">3</span>
           </a>
