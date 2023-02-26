@@ -3,11 +3,13 @@ import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import PizzaSkeleton from "../components/PizzaBlock/PizzaSkeleton";
+import PizzaPagination from "../components/PizzaPagination";
 
 export default function Home(props) {
   const { searchValue } = props;
   const [data, setData] = useState([]);
   const [isLoading, setIsloading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
   const [categoryId, setCategoryId] = useState(0);
   const [dataSort, setDataSort] = useState({
     value: "popularity",
@@ -18,8 +20,8 @@ export default function Home(props) {
   useEffect(() => {
     setIsloading(true);
     fetch(
-      `https://63fa119d473885d837d7da72.mockapi.io/items?${
-        categoryId > 0 ? `category=${categoryId}` : ""
+      `https://63fa119d473885d837d7da72.mockapi.io/items?page=${currentPage}&limit=8${
+        categoryId > 0 ? `&category=${categoryId}` : ""
       }&sortBy=${dataSort.sortProperty}&order=${dataSort.orderProperty}${
         searchValue ? `&search=${searchValue}` : ""
       }`
@@ -31,20 +33,36 @@ export default function Home(props) {
       })
       .catch((err) => console.warn(err));
     window.scrollTo(0, 0);
-  }, [categoryId, dataSort, searchValue]);
+  }, [categoryId, dataSort, searchValue, currentPage]);
 
   return (
     <>
       <div className="content__top">
-        <Categories valueId={categoryId} onChangeCategory={setCategoryId} />
-        <Sort dataSort={dataSort} onChangeDataSort={setDataSort} />
+        <Categories
+          valueId={categoryId}
+          onChangeCategory={(index) => {
+            setCurrentPage(1);
+            setCategoryId(index);
+          }}
+        />
+        <Sort
+          dataSort={dataSort}
+          onChangeDataSort={(index) => {
+            setCurrentPage(1);
+            setDataSort(index);
+          }}
+        />
       </div>
       <h2 className="content__title">All pizza</h2>
       <div className="content__offer">
         {isLoading
-          ? [...new Array(7)].map((_, index) => <PizzaSkeleton key={index} />)
+          ? [...new Array(8)].map((_, index) => <PizzaSkeleton key={index} />)
           : data.map((obj) => <PizzaBlock key={obj.id} data={obj} />)}
       </div>
+      <PizzaPagination
+        currentPage={currentPage}
+        onChangePage={(e, value) => setCurrentPage(value)}
+      />
     </>
   );
 }
