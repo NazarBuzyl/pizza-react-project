@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import PlusMinusCrossSvg from "../common/PlusMinusCrossSvg";
 
 export default function PizzaBlock(props) {
-  const { id, imageUrl, name, types, sizes, price, category, rating } =
-    props.data;
+  const { imageUrl, name, types, sizes, price } = props.data;
 
   const [activeIndexType, setActiveIndexType] = useState(types[0]);
   const [activeIndexSize, setActiveIndexSize] = useState(0);
@@ -11,8 +10,6 @@ export default function PizzaBlock(props) {
   const typesName = ["thin", "standart"];
 
   const onAddCart = () => {};
-
-  console.log(id, category, rating);
 
   return (
     <div className="pizza-block-wrapper">

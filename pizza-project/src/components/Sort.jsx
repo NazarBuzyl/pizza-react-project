@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import arrowTop from "../assets/img/arrow-top.svg";
+import ArrowTopSvg from "./common/ArrowTopSvg";
 
 export default function Sort() {
   const [activeIndexSort, setActiveIndexSort] = useState(1);
@@ -21,7 +21,9 @@ export default function Sort() {
   return (
     <div className="sort">
       <div onClick={() => setOpen(!open)} className="sort__label">
-        <img className="sort__label-svg" src={arrowTop} alt="arrow-top" />
+        <div className="sort__label-svg">
+          <ArrowTopSvg />
+        </div>
         <b className="sort__label-b">Sort by:</b>
         <span className="sort__label-span"> {sortList[activeIndexSort]}</span>
       </div>
