@@ -2,10 +2,13 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import logoSvg from "../assets/img/pizza-logo.svg";
+import Search from "./Search";
 import CartSvg from "../components/common/CartSvg";
 
-export default function Header() {
+export default function Header(props) {
+  const { searchValue, setSearchValue } = props;
   const location = useLocation();
+
   return (
     <header className="header">
       <div className="container">
@@ -26,16 +29,19 @@ export default function Header() {
           </div>
         </Link>
         {location.pathname !== "/cart" ? (
-          <div className="header__cart">
-            <Link to="/cart" className="button button--cart">
-              <span className="button--cart__span">520 $</span>
-              <div className="button--delimiter"></div>
-              <div className="button--cart__logo">
-                <CartSvg />
-              </div>
-              <span className="button--cart__span">3</span>
-            </Link>
-          </div>
+          <>
+            <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+            <div className="header__cart">
+              <Link to="/cart" className="button button--cart">
+                <span className="button--cart__span">520 $</span>
+                <div className="button--delimiter"></div>
+                <div className="button--cart__logo">
+                  <CartSvg />
+                </div>
+                <span className="button--cart__span">3</span>
+              </Link>
+            </div>
+          </>
         ) : (
           ""
         )}

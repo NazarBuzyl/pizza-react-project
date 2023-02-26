@@ -4,7 +4,8 @@ import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import PizzaSkeleton from "../components/PizzaBlock/PizzaSkeleton";
 
-export default function Home() {
+export default function Home(props) {
+  const { searchValue } = props;
   const [data, setData] = useState([]);
   const [isLoading, setIsloading] = useState(true);
   const [categoryId, setCategoryId] = useState(0);
@@ -19,7 +20,9 @@ export default function Home() {
     fetch(
       `https://63fa119d473885d837d7da72.mockapi.io/items?${
         categoryId > 0 ? `category=${categoryId}` : ""
-      }&sortBy=${dataSort.sortProperty}&order=${dataSort.orderProperty}`
+      }&sortBy=${dataSort.sortProperty}&order=${dataSort.orderProperty}${
+        searchValue ? `&search=${searchValue}` : ""
+      }`
     )
       .then((res) => res.json())
       .then((json) => {
@@ -28,7 +31,7 @@ export default function Home() {
       })
       .catch((err) => console.warn(err));
     window.scrollTo(0, 0);
-  }, [categoryId, dataSort]);
+  }, [categoryId, dataSort, searchValue]);
 
   return (
     <>
