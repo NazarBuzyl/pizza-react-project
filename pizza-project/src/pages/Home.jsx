@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import PizzaSkeleton from "../components/PizzaBlock/PizzaSkeleton";
 import PizzaPagination from "../components/PizzaPagination";
+import { SearchContext } from "../App";
 
-export default function Home(props) {
-  const { searchValue } = props;
+export default function Home() {
   const [data, setData] = useState([]);
   const [isLoading, setIsloading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,6 +16,7 @@ export default function Home(props) {
     sortProperty: "rating",
     orderProperty: "desc",
   });
+  const { searchValue } = useContext(SearchContext);
 
   useEffect(() => {
     setIsloading(true);
