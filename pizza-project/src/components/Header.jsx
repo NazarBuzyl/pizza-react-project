@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
+
+import { SearchContext } from "../App";
 
 import logoSvg from "../assets/img/pizza-logo.svg";
 import Search from "./Search";
 import CartSvg from "../components/common/CartSvg";
 
-export default function Header(props) {
-  const { searchValue, setSearchValue } = props;
+export default function Header() {
+  const { searchValue, setSearchValue } = useContext(SearchContext);
   const location = useLocation();
 
   return (

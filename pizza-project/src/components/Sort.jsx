@@ -1,28 +1,33 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setDataSort } from "../redux/filterSlice";
+
 import ArrowTopSvg from "./common/ArrowTopSvg";
 
-export default function Sort(props) {
-  const { dataSort, onChangeDataSort } = props;
+export const sortList = [
+  { value: "popularity", sortProperty: "rating", orderProperty: "desc" },
+  {
+    value: "price: high to low",
+    sortProperty: "price",
+    orderProperty: "desc",
+  },
+  {
+    value: "price: low to high",
+    sortProperty: "price",
+    orderProperty: "asc",
+  },
+  { value: "alphabetical: A-Z", sortProperty: "name", orderProperty: "asc" },
+  { value: "alphabetical: Z-A", sortProperty: "name", orderProperty: "desc" },
+];
+
+export default function Sort() {
+  const dispatch = useDispatch();
+  const dataSort = useSelector((state) => state.filterReducer.dataSort);
+
   const [open, setOpen] = useState(false);
 
-  const sortList = [
-    { value: "popularity", sortProperty: "rating", orderProperty: "desc" },
-    {
-      value: "price: high to low",
-      sortProperty: "price",
-      orderProperty: "desc",
-    },
-    {
-      value: "price: low to high",
-      sortProperty: "price",
-      orderProperty: "asc",
-    },
-    { value: "alphabetical: A-Z", sortProperty: "name", orderProperty: "desc" },
-    { value: "alphabetical: Z-A", sortProperty: "name", orderProperty: "asc" },
-  ];
-
   const onClickSortItem = (index) => {
-    onChangeDataSort(index);
+    dispatch(setDataSort(index));
     setOpen(!open);
   };
 
