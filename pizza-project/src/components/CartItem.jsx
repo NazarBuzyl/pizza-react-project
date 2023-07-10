@@ -1,33 +1,54 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import PlusMinusCrossSvg from "./common/PlusMinusCrossSvg";
+import { removeItem, addItem, minusItem } from "../redux/cartSlice";
 
-export default function CartItem() {
+export default function CartItem({
+  id,
+  name,
+  price,
+  imageUrl,
+  type,
+  size,
+  count,
+}) {
+  const dispatch = useDispatch();
+
+  const onClickMinus = () => dispatch(minusItem({ id }));
+  const onClickAdd = () => dispatch(addItem({ id }));
+  const onClickRemove = () => dispatch(removeItem({ id }));
+
+  const typesName = ["thin", "standart"];
   return (
     <div className="cart__item">
       <div className="cart__item-img">
-        <img
-          className="pizza-block__image"
-          src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-          alt="Pizza"
-        />
+        <img className="pizza-block__image" src={imageUrl} alt={name} />
       </div>
       <div className="cart__item-info">
-        <h3>Sweet-sour chicken</h3>
-        <p>thin dough, 26 sm.</p>
+        <h3>{name}</h3>
+        <p>
+          {typesName[type]} dough, {size} sm.
+        </p>
       </div>
       <div className="cart__item-count">
-        <div className="button button--outline button--circle cart__item-count-minus">
+        <div
+          onClick={onClickMinus}
+          className="button button--outline button--circle cart__item-count-minus"
+        >
           <PlusMinusCrossSvg />
         </div>
-        <b>2</b>
-        <div className="button button--outline button--circle cart__item-count-plus">
+        <b>{count}</b>
+        <div
+          onClick={onClickAdd}
+          className="button button--outline button--circle cart__item-count-plus"
+        >
           <PlusMinusCrossSvg />
         </div>
       </div>
       <div className="cart__item-price">
-        <b>42.4 $</b>
+        <b>{price * count} $</b>
       </div>
-      <div className="cart__item-remove">
+      <div onClick={onClickRemove} className="cart__item-remove">
         <div className="button button--outline button--circle">
           <PlusMinusCrossSvg />
         </div>

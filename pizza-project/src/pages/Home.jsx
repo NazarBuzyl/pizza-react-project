@@ -99,7 +99,7 @@ export default function Home() {
       <div className="content__offer">
         {isLoading
           ? [...new Array(8)].map((_, index) => <PizzaSkeleton key={index} />)
-          : data.map((obj) => <PizzaBlock key={obj.id} data={obj} />)}
+          : data.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
       </div>
       <PizzaPagination />
     </>

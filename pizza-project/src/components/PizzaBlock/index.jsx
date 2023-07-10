@@ -1,13 +1,38 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import PlusMinusCrossSvg from "../common/PlusMinusCrossSvg";
 
-export default function PizzaBlock(props) {
-  const { imageUrl, name, types, sizes, price } = props.data;
+import { addItem } from "../../redux/cartSlice";
 
+export default function PizzaBlock({
+  id,
+  imageUrl,
+  name,
+  types,
+  sizes,
+  price,
+}) {
+  const dispatch = useDispatch();
   const [activeIndexType, setActiveIndexType] = useState(types[0]);
   const [activeIndexSize, setActiveIndexSize] = useState(0);
-
+  const addedCount = useSelector((state) =>
+    state.cartReducer.items.find(
+      (obj) => obj.id === `${id}#${activeIndexType}#${activeIndexSize}`
+    )
+  );
   const typesName = ["thin", "standart"];
+
+  const onClickAdd = () => {
+    const item = {
+      id: `${id}#${activeIndexType}#${activeIndexSize}`,
+      name,
+      price,
+      imageUrl,
+      type: activeIndexType,
+      size: sizes[activeIndexSize],
+    };
+    dispatch(addItem(item));
+  };
 
   const onAddCart = () => {};
 
@@ -49,7 +74,7 @@ export default function PizzaBlock(props) {
               })}
             </ul>
           </div>
-          <div className="pizza-block__bottom">
+          <div onClick={onClickAdd} className="pizza-block__bottom">
             <div className="pizza-block__price">{price} $</div>
             <div
               onClick={() => onAddCart()}
@@ -57,7 +82,7 @@ export default function PizzaBlock(props) {
             >
               <PlusMinusCrossSvg />
               <span>Add</span>
-              <i>2</i>
+              {addedCount && <i>{addedCount.count}</i>}
             </div>
           </div>
         </div>

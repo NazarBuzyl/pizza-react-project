@@ -23,6 +23,7 @@ export const sortList = [
 export default function Sort() {
   const dispatch = useDispatch();
   const dataSort = useSelector((state) => state.filterReducer.dataSort);
+  const sortRef = React.useRef();
 
   const [open, setOpen] = useState(false);
 
@@ -31,8 +32,20 @@ export default function Sort() {
     setOpen(!open);
   };
 
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.composedPath().includes(sortRef.current)) {
+        setOpen(false);
+      }
+    };
+
+    document.body.addEventListener("click", handleClickOutside);
+
+    return () => document.body.removeEventListener("click", handleClickOutside);
+  }, []);
+
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div onClick={() => setOpen(!open)} className="sort__label">
         <div className="sort__label-svg">
           <ArrowTopSvg />
