@@ -56,6 +56,13 @@ export const filterSlice = createSlice({
   },
 });
 
+export const selectCart = (state) => state.cartReducer;
+export const selectCartItemById =
+  (id, activeIndexType, activeIndexSize) => (state) =>
+    state.cartReducer.items.find(
+      (obj) => obj.id === `${id}#${activeIndexType}#${activeIndexSize}`
+    );
+
 export const { addItem, removeItem, clearItems, minusItem } =
   filterSlice.actions;
 

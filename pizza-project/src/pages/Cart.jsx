@@ -8,13 +8,11 @@ import TrashSvg from "../components/common/TrashSvg";
 import CartSvg from "../components/common/CartSvg";
 import ArrowSvg from "../components/common/ArrowSvg";
 
-import { clearItems } from "../redux/cartSlice";
+import { clearItems, selectCart } from "../redux/cartSlice";
 
 export default function Cart() {
   const dispatch = useDispatch();
-  const { totalCount, totalPrice, items } = useSelector(
-    (state) => state.cartReducer
-  );
+  const { totalCount, totalPrice, items } = useSelector(selectCart);
   const onClickClear = () => dispatch(clearItems());
 
   return (

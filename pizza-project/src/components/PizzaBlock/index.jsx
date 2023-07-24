@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PlusMinusCrossSvg from "../common/PlusMinusCrossSvg";
 
-import { addItem } from "../../redux/cartSlice";
+import { addItem, selectCartItemById } from "../../redux/cartSlice";
 
 export default function PizzaBlock({
   id,
@@ -15,10 +15,8 @@ export default function PizzaBlock({
   const dispatch = useDispatch();
   const [activeIndexType, setActiveIndexType] = useState(types[0]);
   const [activeIndexSize, setActiveIndexSize] = useState(0);
-  const addedCount = useSelector((state) =>
-    state.cartReducer.items.find(
-      (obj) => obj.id === `${id}#${activeIndexType}#${activeIndexSize}`
-    )
+  const addedCount = useSelector(
+    selectCartItemById(id, activeIndexType, activeIndexSize)
   );
   const typesName = ["thin", "standart"];
 

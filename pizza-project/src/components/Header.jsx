@@ -1,24 +1,28 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-import { SearchContext } from "../App";
+import { updateFilters } from "../redux/filterSlice";
 
 import logoSvg from "../assets/img/pizza-logo.svg";
 import Search from "./Search";
 import CartSvg from "../components/common/CartSvg";
+import { selectCart } from "../redux/cartSlice";
 
 export default function Header() {
-  const { searchValue, setSearchValue } = useContext(SearchContext);
   const location = useLocation();
-  const { totalPrice, totalCount } = useSelector((state) => state.cartReducer);
+  const dispatch = useDispatch();
+  const { totalPrice, totalCount } = useSelector(selectCart);
+  const onUpdatePage = () => {
+    dispatch(updateFilters);
+  };
 
   return (
     <header className="header">
       <div className="container">
         <Link to="/" className="header__logo-link">
-          <div className="header__logo">
+          <div onClick={onUpdatePage} className="header__logo">
             <img
               className="header__logo-img"
               width="38"
@@ -35,10 +39,10 @@ export default function Header() {
         </Link>
         {location.pathname !== "/cart" ? (
           <>
-            <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+            <Search />
             <div className="header__cart">
               <Link to="/cart" className="button button--cart">
-                <span className="button--cart__span">{totalPrice} $</span>
+                <span className="button--cart__span">{totalPrice}$</span>
                 <div className="button--delimiter"></div>
                 <div className="button--cart__logo">
                   <CartSvg />

@@ -35,8 +35,20 @@ export const filterSlice = createSlice({
       state.categoryId = Number(action.payload.categoryId);
       state.currentPage = Number(action.payload.currentPage);
     },
+    updateFilters(state, action) {
+      state.categoryId = 0;
+      state.dataSort = {
+        value: "popularity",
+        sortProperty: "rating",
+        orderProperty: "desc",
+      };
+      state.searchValue = "";
+      state.currentPage = 1;
+    },
   },
 });
+
+export const selectFilter = (state) => state.filterReducer;
 
 export const {
   setCategoryId,
@@ -44,6 +56,7 @@ export const {
   setSearchValue,
   setCurrentPage,
   setFilters,
+  updateFilters,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

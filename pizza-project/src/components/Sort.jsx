@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setDataSort } from "../redux/filterSlice";
 
 import ArrowTopSvg from "./common/ArrowTopSvg";
@@ -20,9 +20,8 @@ export const sortList = [
   { value: "alphabetical: Z-A", sortProperty: "name", orderProperty: "desc" },
 ];
 
-export default function Sort() {
+export default function Sort({ dataSort }) {
   const dispatch = useDispatch();
-  const dataSort = useSelector((state) => state.filterReducer.dataSort);
   const sortRef = React.useRef();
 
   const [open, setOpen] = useState(false);

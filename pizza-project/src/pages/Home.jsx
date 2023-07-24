@@ -1,82 +1,70 @@
-import React, { useState, useEffect, useContext } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React from "react";
 import qs from "qs";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { setFilters } from "../redux/filterSlice";
-import axios from "axios";
+import {
+  selectFilter,
+  setCategoryId,
+  setCurrentPage,
+  setFilters,
+} from "../redux/filterSlice";
+import { fetchPizzas, selectPizzasData } from "../redux/pizzasSlice";
 
 import Categories from "../components/Categories";
 import Sort, { sortList } from "../components/Sort";
+import ErrorPizza from "../components/NotFoundBlock/ErrorPizza";
 import PizzaBlock from "../components/PizzaBlock";
 import PizzaSkeleton from "../components/PizzaBlock/PizzaSkeleton";
 import PizzaPagination from "../components/PizzaPagination";
 
-import { SearchContext } from "../App";
+// import { SearchContext } from "../App";
 
 export default function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
+
   // Redux
-  const categoryId = useSelector((state) => state.filterReducer.categoryId);
-  const dataSort = useSelector((state) => state.filterReducer.dataSort);
-  const currentPage = useSelector((state) => state.filterReducer.currentPage);
+  const { categoryId, dataSort, currentPage, searchValue } =
+    useSelector(selectFilter);
+  const { items, status } = useSelector(selectPizzasData);
 
-  // useState
-  const [data, setData] = useState([]);
-  const [isLoading, setIsloading] = useState(true);
-
-  // useContext
-  const { searchValue } = useContext(SearchContext);
-
-  const fetchPizzas = () => {
-    axios
-      .get(
-        `https://63fa119d473885d837d7da72.mockapi.io/items?page=${currentPage}&limit=8${
-          categoryId > 0 ? `&category=${categoryId}` : ""
-        }&sortBy=${dataSort.sortProperty}&order=${dataSort.orderProperty}${
-          searchValue ? `&search=${searchValue}` : ""
-        }`
-      )
-      .then((res) => {
-        setData(res.data);
-        setIsloading(false);
-      });
+  const onChangeCategory = (id) => {
+    dispatch(setCategoryId(id));
   };
 
-  // if there was a first render, then we check the URL-parameters and save them in Redux
-  useEffect(() => {
-    if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1));
-      const sort = sortList.find(
-        (obj) =>
-          obj.sortProperty === params.sortProperty &&
-          obj.orderProperty === params.orderProperty
-      );
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number));
+  };
 
-      dispatch(setFilters({ ...params, sort }));
-      isSearch.current = true;
-    }
-  }, [dispatch]);
+  // useContext
+  // const { searchValue } = React.useContext(SearchContext);
 
-  //if there was a first render, then we request a pizza
-  useEffect(() => {
+  //FetchPizzas
+  const getPizzas = async () => {
+    const sortProperty = dataSort.sortProperty;
+    const orderProperty = dataSort.orderProperty;
+
+    await dispatch(
+      fetchPizzas({
+        currentPage: String(currentPage),
+        categoryId,
+        sortProperty,
+        orderProperty,
+        searchValue,
+      })
+    );
+
     window.scrollTo(0, 0);
-
-    if (isSearch) {
-      setIsloading(true);
-      fetchPizzas();
-    }
-
-    isSearch.current = false;
-  }, [categoryId, dataSort, searchValue, currentPage]);
+  };
 
   // Add our filters to the URL line
-  useEffect(() => {
+  React.useEffect(() => {
     if (isMounted.current) {
       const queryString = qs.stringify({
+        search: searchValue,
         sortProperty: dataSort.sortProperty,
         orderProperty: dataSort.orderProperty,
         categoryId,
@@ -86,22 +74,54 @@ export default function Home() {
       navigate(`?${queryString}`);
     }
 
+    getPizzas();
+  }, [categoryId, dataSort, currentPage, searchValue]);
+
+  // if there was a first render, then we check the URL-parameters and save them in Redux
+  React.useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+      const sort = sortList.find(
+        (obj) =>
+          obj.sortProperty === params.sortProperty &&
+          obj.orderProperty === params.orderProperty
+      );
+
+      dispatch(setFilters({ ...params, sort }));
+    }
     isMounted.current = true;
-  }, [categoryId, dataSort, currentPage, navigate]);
+  }, []);
 
   return (
     <>
       <div className="content__top">
-        <Categories />
-        <Sort />
+        <Categories
+          categoryId={categoryId}
+          onChangeCategory={onChangeCategory}
+        />
+        <Sort dataSort={dataSort} />
       </div>
-      <h2 className="content__title">All pizza</h2>
-      <div className="content__offer">
-        {isLoading
-          ? [...new Array(8)].map((_, index) => <PizzaSkeleton key={index} />)
-          : data.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
-      </div>
-      <PizzaPagination />
+      {status === "error" ? (
+        <ErrorPizza />
+      ) : (
+        <>
+          <h2 className="content__title">All pizza</h2>
+          <div className="content__offer">
+            {status === "loading"
+              ? [...new Array(12)].map((_, index) => (
+                  <PizzaSkeleton key={index} />
+                ))
+              : items.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
+          </div>
+        </>
+      )}
+      {status === "success" && (
+        <PizzaPagination
+          currentPage={currentPage}
+          onChangePage={onChangePage}
+          countPage={5}
+        />
+      )}
     </>
   );
 }
