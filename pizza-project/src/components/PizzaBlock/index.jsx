@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import PlusMinusCrossSvg from "../common/PlusMinusCrossSvg";
 
 import { addItem, selectCartItemById } from "../../redux/cartSlice";
@@ -37,10 +38,12 @@ export default function PizzaBlock({
   return (
     <div className="pizza-block-wrapper">
       <div className="pizza-block">
-        <div className="pizza-block_image-block">
-          <img className="pizza-block__image" src={imageUrl} alt={name} />
-        </div>
-        <h4 className="pizza-block__title">{name}</h4>
+        <Link to={`/pizza/${id}`}>
+          <div className="pizza-block_image-block">
+            <img className="pizza-block__image" src={imageUrl} alt={name} />
+          </div>
+          <h4 className="pizza-block__title">{name}</h4>
+        </Link>
         <div>
           <div className="pizza-block__selector">
             <ul className="pizza-block__selector-list">

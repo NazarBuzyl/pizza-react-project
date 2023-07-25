@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchPizzas = createAsyncThunk(
   "pizza/fetchPizzasStatus",
-  async (params, thunnkAPI) => {
+  async (params) => {
     const {
       currentPage,
       categoryId,
@@ -19,7 +19,6 @@ export const fetchPizzas = createAsyncThunk(
       }`
     );
 
-    console.log(thunnkAPI);
     return data;
   }
 );
