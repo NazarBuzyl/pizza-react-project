@@ -4,18 +4,18 @@ import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { updateFilters } from "../redux/filterSlice";
+import { selectCart } from "../redux/cartSlice";
 
 import logoSvg from "../assets/img/pizza-logo.svg";
 import Search from "./Search";
 import CartSvg from "../components/common/CartSvg";
-import { selectCart } from "../redux/cartSlice";
 
 export default function Header() {
   const location = useLocation();
   const dispatch = useDispatch();
   const { totalPrice, totalCount } = useSelector(selectCart);
   const onUpdatePage = () => {
-    dispatch(updateFilters);
+    dispatch(updateFilters());
   };
 
   return (
@@ -39,7 +39,9 @@ export default function Header() {
         </Link>
         {location.pathname !== "/cart" ? (
           <>
-            <Search />
+            <div className="header__search">
+              <Search />
+            </div>
             <div className="header__cart">
               <Link to="/cart" className="button button--cart">
                 <span className="button--cart__span">{totalPrice}$</span>

@@ -8,6 +8,7 @@
   min-width: 100px;
   text-align: center;
   cursor: pointer;
+  user-select: none;
   transition: background-color $duration ease-in-out,
     border-color $duration ease-in-out;
   border: 1px solid transparent;
@@ -144,7 +145,7 @@
       font-weight: 600;
       font-size: 16px;
     }
-    @media screen and (max-width: 650px) {
+    @media screen and (max-width: 560px) {
       min-width: auto;
       width: 45px;
       height: 45px;

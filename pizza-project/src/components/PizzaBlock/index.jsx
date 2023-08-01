@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import PlusMinusCrossSvg from "../common/PlusMinusCrossSvg";
-
-import { addItem, selectCartItemById } from "../../redux/cartSlice";
+import ButtonAddItem from "../ButtonAddItem";
 
 export default function PizzaBlock({
   id,
@@ -13,27 +10,20 @@ export default function PizzaBlock({
   sizes,
   price,
 }) {
-  const dispatch = useDispatch();
   const [activeIndexType, setActiveIndexType] = useState(types[0]);
   const [activeIndexSize, setActiveIndexSize] = useState(0);
-  const addedCount = useSelector(
-    selectCartItemById(id, activeIndexType, activeIndexSize)
-  );
   const typesName = ["thin", "standart"];
 
-  const onClickAdd = () => {
-    const item = {
-      id: `${id}#${activeIndexType}#${activeIndexSize}`,
-      name,
-      price,
-      imageUrl,
-      type: activeIndexType,
-      size: sizes[activeIndexSize],
-    };
-    dispatch(addItem(item));
+  const buttonData = {
+    id,
+    imageUrl,
+    name,
+    size: sizes[activeIndexSize],
+    type: activeIndexType,
+    price,
+    activeIndexType,
+    activeIndexSize,
   };
-
-  const onAddCart = () => {};
 
   return (
     <div className="pizza-block-wrapper">
@@ -75,16 +65,9 @@ export default function PizzaBlock({
               })}
             </ul>
           </div>
-          <div onClick={onClickAdd} className="pizza-block__bottom">
+          <div className="pizza-block__bottom">
             <div className="pizza-block__price">{price} $</div>
-            <div
-              onClick={() => onAddCart()}
-              className="button button--outline button--add"
-            >
-              <PlusMinusCrossSvg />
-              <span>Add</span>
-              {addedCount && <i>{addedCount.count}</i>}
-            </div>
+            <ButtonAddItem {...buttonData} />
           </div>
         </div>
       </div>

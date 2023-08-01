@@ -4,6 +4,7 @@ import debounce from "lodash.debounce";
 import styles from "./Search.module.scss";
 
 import { setSearchValue } from "../../redux/filterSlice";
+import { updateFilters } from "../../redux/filterSlice";
 import SearchIcon from "../common/SearchSvg";
 
 export default function Search() {
@@ -19,6 +20,7 @@ export default function Search() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateSearchValue = React.useCallback(
     debounce((value) => {
+      dispatch(updateFilters());
       dispatch(setSearchValue(value));
     }, 500),
     []

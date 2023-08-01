@@ -1,4 +1,4 @@
-@import '../vars';
+@import "../vars";
 
 .header {
   border-bottom: 1px solid $gray-line;
@@ -8,12 +8,27 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  &__logo-link {
+    @media screen and (max-width: 1100px) {
+      width: 100%;
+      display: block;
+      margin-bottom: 10px;
+    }
+    @media screen and (max-width: 560px) {
+      width: auto;
+    }
   }
 
   &__logo {
     display: flex;
+    min-width: 340px;
+    @media screen and (max-width: 560px) {
+      min-width: none;
+    }
   }
-  
+
   &__logo-img {
     margin-right: 15px;
   }
@@ -31,5 +46,18 @@
     @media screen and (max-width: 560px) {
       display: none;
     }
+  }
+
+  &__search {
+    @media screen and (max-width: 1100px) {
+      width: calc(100% - 200px);
+    }
+    @media screen and (max-width: 560px) {
+      width: auto;
+    }
+  }
+
+  &__cart {
+    margin-left: 5px;
   }
 }

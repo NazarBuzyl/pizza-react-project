@@ -7,7 +7,7 @@ import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import NotFoundPage from "./pages/NotFoundPage";
-import FullPizza from "./pages/FullPizza";
+import PizzaPage from "./pages/PizzaPage";
 
 export const SearchContext = React.createContext();
 
@@ -17,7 +17,7 @@ function App() {
       <Route path="/" element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/pizza/:id" element={<FullPizza />} />
+        <Route path="/pizza/:id" element={<PizzaPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

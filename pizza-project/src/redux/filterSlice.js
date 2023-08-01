@@ -44,6 +44,7 @@ export const filterSlice = createSlice({
       };
       state.searchValue = "";
       state.currentPage = 1;
+      console.log(action);
     },
   },
 });

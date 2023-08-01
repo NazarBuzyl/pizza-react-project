@@ -20,7 +20,7 @@ export default function Cart() {
       {!items.length > 0 ? (
         <CartEmpty />
       ) : (
-        <div className="container container--cart">
+        <div className="container--cart">
           <div className="cart">
             <div className="cart__top">
               <h2 className="content__title">
