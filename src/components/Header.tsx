@@ -1,9 +1,8 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 // ---------------------------------------------------------------- import Redux ----------------------------------------------------------------
-import { updateFilters } from "../redux/filterSlice";
 import { selectCart } from "../redux/cartSlice";
 // ---------------------------------------------------------------- import Components ----------------------------------------------------------------
 import Search from "./Search";
@@ -14,17 +13,22 @@ import logoSvg from "../assets/img/pizza-logo.svg";
 // ---------------------------------------------------------------- MAIN ----------------------------------------------------------------
 const Header: React.FC = () => {
   const location = useLocation();
-  const dispatch = useDispatch();
-  const { totalPrice, totalCount } = useSelector(selectCart);
-  const onUpdatePage = () => {
-    dispatch(updateFilters());
-  };
+  const isMounted = React.useRef(false);
+  const { items, totalPrice, totalCount } = useSelector(selectCart);
+
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(items);
+      window.localStorage.setItem("cart", json);
+    }
+    isMounted.current = true;
+  }, [items]);
 
   return (
     <header className="header">
       <div className="container">
         <Link to="/" className="header__logo-link">
-          <div onClick={onUpdatePage} className="header__logo">
+          <div className="header__logo">
             <img
               className="header__logo-img"
               width="38"
@@ -61,6 +65,6 @@ const Header: React.FC = () => {
       </div>
     </header>
   );
-}
+};
 
 export default Header;

@@ -33,13 +33,13 @@ const Home: React.FC = () => {
     useSelector(selectFilter);
   const { items, status } = useSelector(selectPizzasData);
 
-  const onChangeCategory = (id: number) => {
+  const onChangeCategory = React.useCallback((id: number) => {
     dispatch(setCategoryId(id));
-  };
+  }, []);
 
-  const onChangePage = (page: number) => {
+  const onChangePage = React.useCallback((page: number) => {
     dispatch(setCurrentPage(page));
-  };
+  }, []);
 
   //FetchPizzas
   const getPizzas = async () => {
@@ -63,11 +63,11 @@ const Home: React.FC = () => {
   React.useEffect(() => {
     if (isMounted.current) {
       const queryString = qs.stringify({
-        search: searchValue,
-        sortProperty: dataSort.sortProperty,
-        orderProperty: dataSort.orderProperty,
-        categoryId,
-        currentPage,
+        search: searchValue || "",
+        sortProperty: dataSort.sortProperty || "rating",
+        orderProperty: dataSort.orderProperty || "desc",
+        categoryId: categoryId || 0,
+        currentPage: currentPage || 1,
       });
 
       navigate(`?${queryString}`);
@@ -85,15 +85,14 @@ const Home: React.FC = () => {
           obj.sortProperty === params.sortProperty &&
           obj.orderProperty === params.orderProperty
       );
+      const newFilters = {
+        searchValue: String(params.search) || "",
+        categoryId: Number(params.categoryId) || 0,
+        currentPage: Number(params.currentPage) || 1,
+        dataSort: sort || sortList[0],
+      };
 
-      dispatch(
-        setFilters({
-          searchValue: String(params.search),
-          categoryId: Number(params.category),
-          currentPage: Number(params.currentPage),
-          dataSort: sort || sortList[0],
-        })
-      );
+      dispatch(setFilters(newFilters));
     }
     isMounted.current = true;
   }, []);
